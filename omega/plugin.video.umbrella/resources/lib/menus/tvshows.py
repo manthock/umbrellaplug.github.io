@@ -669,7 +669,15 @@ class TVshows:
 							log_utils.log('TVShow Last Played Blank Title: %' % self.list[i]['title'], 1)
 					#self.list = sorted(self.list, key=lambda k: k['lastplayed'], reverse=reverse)
 					if self.list:
-						self.list = sorted(self.list, key=lambda k: time.strptime(k['lastplayed'], "%Y-%m-%dT%H:%M:%S.%fZ") if k.get('lastplayed') else time.gmtime(0), reverse=reverse)
+						def _parse_lastplayed(k):
+							lp = k.get('lastplayed')
+							if not lp:
+								return time.gmtime(0)
+							try:
+								return time.strptime(lp, "%Y-%m-%dT%H:%M:%S.%fZ")
+							except ValueError:
+								return time.strptime(lp, "%Y-%m-%dT%H:%M:%SZ")
+						self.list = sorted(self.list, key=_parse_lastplayed, reverse=reverse)
 			elif reverse:
 				self.list = list(reversed(self.list))
 		except:
