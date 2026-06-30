@@ -5791,3 +5791,11 @@ msgstr ""
 msgctxt "#40714"
 msgid "[COLOR %s][B]Dropped Manager - Shows[/B][/COLOR]"
 msgstr ""
+
+msgctxt "#40715"
+msgid "Prioritize Language to top"
+msgstr ""
+
+msgctxt "#40716"
+msgid "Priority Language"
+msgstr ""
